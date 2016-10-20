@@ -1,2 +1,2 @@
-# GG-job-vacancy
-Proyecto de Ingeniería de Software - Job Vacancy
+# Di Pierro, Gonzalo Nahuel - Pena, Gabriel
+Proyecto Final de Ingeniería de Software - Job Vacancy
