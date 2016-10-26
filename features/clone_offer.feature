@@ -4,7 +4,8 @@ Feature: Clone Offer
   I want to clone an existing offer
 
   Background:
-  	Given There is at least one existing offer posted by me
+  	Given I am logged as a job offerer 
+  	And There is at least one existing offer posted by me
 
   Scenario: Clone an existing offer
     Given I am watching the Ruby-Padrino offer

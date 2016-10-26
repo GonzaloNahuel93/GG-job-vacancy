@@ -1,10 +1,10 @@
 Given(/^There is at least one existing offer posted by me$/) do
-  #visit '/job_offers/new/'
-  #fill_in('job_offer[title]', :with => 'Programador Ruby-Padrino')
-  #fill_in('job_offer[location]', :with => 'Ciudad de Buenos Aires')
-  #fill_in('job_offer[description]', :with => 'Buscamos alguien capaz de trabajar en el proyecto Job Vacancy')
-  #click_button('Create')
-  #page.should have_content('Programador Ruby-Padrino')
+  visit '/job_offers/new/'
+  fill_in('job_offer[title]', :with => 'Programador Ruby-Padrino')
+  fill_in('job_offer[location]', :with => 'Ciudad de Buenos Aires')
+  fill_in('job_offer[description]', :with => 'Buscamos alguien capaz de trabajar en el proyecto Job Vacancy')
+  click_button('Create')
+  page.should have_content('Programador Ruby-Padrino')
   pending
 end
 
