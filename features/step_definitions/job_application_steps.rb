@@ -12,7 +12,7 @@ Given(/^I access the offers list page$/) do
 end
 
 When(/^I apply$/) do
-  visit '/job_offers/apply/1'
+  visit '/job_offers/apply/1' #Esto va a agarrar siempre la primer oferta, porque en caso de haber varias, el link 'Apply' genera ambiguedad
   fill_in('job_application[applicant_email]', :with => 'applicant@test.com')
   click_button('Apply')
 end
