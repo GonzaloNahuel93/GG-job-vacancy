@@ -12,7 +12,7 @@ Given(/^I access the offers list page$/) do
 end
 
 When(/^I apply$/) do
-  click_link 'Apply'
+  visit '/job_offers/apply/1'
   fill_in('job_application[applicant_email]', :with => 'applicant@test.com')
   click_button('Apply')
 end

@@ -4,7 +4,7 @@ Feature: Clone Offer
   I want to clone an existing offer
 
   Background:
-  	Given I am logged as a job offerer 
+    Given I am logged in as job offerer
   	And There is at least one existing offer posted by me
 
   Scenario: Clone an existing offer
