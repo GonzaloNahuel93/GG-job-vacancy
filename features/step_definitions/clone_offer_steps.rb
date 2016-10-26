@@ -8,11 +8,10 @@ And(/^There is at least one existing offer posted by me$/) do
 end
 
 Given(/^I am watching the Ruby-Padrino offer$/) do
-  #visit '/job_offers'
-  #page.should have_content('Programador Ruby-Padrino')
-  #page.should have_content('Ciudad de Buenos Aires')
-  #page.should have_content('Buscamos a alguien capaz de trabajar en el proyecto Job Vacancy')
-  pending
+  visit '/job_offers'
+  page.should have_content('Programador Ruby-Padrino')
+  page.should have_content('Ciudad de Buenos Aires')
+  page.should have_content('Buscamos alguien capaz de trabajar en el proyecto Job Vacancy')
 end
 
 When(/^I press the clone button for my offer$/) do
