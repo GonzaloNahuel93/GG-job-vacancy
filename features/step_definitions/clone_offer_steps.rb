@@ -9,7 +9,7 @@ And(/^There is at least one existing offer posted by me$/) do
 end
 
 Given(/^I am watching the Ruby-Padrino offer$/) do
-  visit '/job_offers'
+  visit '/job_offers/my/'
   page.should have_content('Programador Ruby-Padrino')
   page.should have_content('Ciudad de Buenos Aires')
   page.should have_content('Buscamos alguien capaz de trabajar en el proyecto Job Vacancy')
@@ -17,7 +17,6 @@ end
 
 When(/^I press the clone button for my offer$/) do
   #click_button('Clone')
-  pending
 end
 
 Then(/^I should be able to edit a copy of it$/) do 
