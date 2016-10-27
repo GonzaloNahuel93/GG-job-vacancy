@@ -18,7 +18,7 @@ Feature: Clone Offer
     Then It should show me an error message
 
   Scenario: Clone an existing offer and posting it with the same name as another offer posted by me
-    Given I am editing my cloned offer
-    And I have previously created another offer named "Programador Python"
+    Given I have previously created another offer named "Programador Python"
+    And I am editing my cloned offer
     When I try to post the cloned offer naming it "Programador Python"
     Then It should show me an error message

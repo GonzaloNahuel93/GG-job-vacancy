@@ -30,21 +30,30 @@ Then(/^I should be able to edit a copy of it$/) do
 end
 
 Given(/^I am editing my cloned offer$/) do
-  pending
+  #ATENCION!!!!! Este no anda
+  #Aca va mi intento de clickear el link Clone de la primera oferta
+  #Estuve una hora dando vueltas con esto, no encontre forma
+  #find(:xpath, "//a[@href='/job_offers/clone/1']").click
 end
 
 When(/^I try to post it with the same name as the original$/) do
-  pending
+    #fill_in('job_offer[title]', :with => @title)
+    #click_button('Create');
 end
 
 Then(/^It should show me an error message$/) do 
-  pending
+  #page.should have_content('Error')
 end
 
-Given(/^I have previously created another offer named "Programador Python"$/) do |offer_title|
-  pending
+Given(/^I have previously created another offer named "(.*?)"$/) do |offer_title|
+  #visit '/job_offers/new/'
+  #fill_in('job_offer[title]', :with => offer_title)
+  #fill_in('job_offer[location]', :with => 'Canada')
+  #fill_in('job_offer[description]', :with => 'Nada que decir')
+  #click_button('Create')
 end
 
-When(/^I try to post the cloned offer naming it "Programador Python$/) do |offer_title|
-  pending
+When(/^I try to post the cloned offer naming it "(.*?)"$/) do |offer_title|
+  #fill_in('job_offer[title]', :with => offer_title)
+  #click_button('Create')
 end
