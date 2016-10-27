@@ -1,5 +1,5 @@
 And(/^There is at least one existing offer posted by me$/) do
-  JobOffer.all.destroy
+  JobOffer.all.destroy #Necesario para probar el Clone.
   visit '/job_offers/new/'
   fill_in('job_offer[title]', :with => 'Programador Ruby-Padrino')
   fill_in('job_offer[location]', :with => 'Ciudad de Buenos Aires')
