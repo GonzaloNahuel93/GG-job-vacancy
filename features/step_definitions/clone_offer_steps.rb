@@ -1,29 +1,32 @@
 And(/^There is at least one existing offer posted by me$/) do
   JobOffer.all.destroy #Necesario para probar el Clone.
   visit '/job_offers/new/'
-  fill_in('job_offer[title]', :with => 'Programador Ruby-Padrino')
-  fill_in('job_offer[location]', :with => 'Ciudad de Buenos Aires')
-  fill_in('job_offer[description]', :with => 'Buscamos alguien capaz de trabajar en el proyecto Job Vacancy')
+  @title = 'Programador Ruby-Padrino'
+  @location = 'Ciudad de Buenos Aires'
+  @description = 'Buscamos alguien capaz de trabajar en el proyecto Job Vacancy'
+  fill_in('job_offer[title]', :with => @title)
+  fill_in('job_offer[location]', :with => @location)
+  fill_in('job_offer[description]', :with => @description)
   click_button('Create')
   page.should have_content('Programador Ruby-Padrino')
 end
 
 Given(/^I am watching the Ruby-Padrino offer$/) do
-  visit '/job_offers/my/'
+  visit '/job_offers/my'
   page.should have_content('Programador Ruby-Padrino')
   page.should have_content('Ciudad de Buenos Aires')
   page.should have_content('Buscamos alguien capaz de trabajar en el proyecto Job Vacancy')
 end
 
 When(/^I press the clone button for my offer$/) do
-  #click_button('Clone')
+  click_link('Clone')
 end
 
 Then(/^I should be able to edit a copy of it$/) do 
-  #visit '/job_offers/new'
-  #page.should have_content('Programador Ruby-Padrino')
-  #page.should have_content('Ciudad de Buenos Aires')
-  #page.should have_content('Buscamos a alguien capaz de trabajar en el proyecto Job Vacancy')
+  #expect(URI.parse(current_url).path).to eq '/job_offers/new'
+  #page.should have_content(@title)
+  #page.should have_content(@location)
+  #page.should have_content(@description)
   pending
 end
 
