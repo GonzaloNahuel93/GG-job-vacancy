@@ -13,9 +13,9 @@ end
 
 Given(/^I am watching the Ruby-Padrino offer$/) do
   visit '/job_offers/my'
-  page.should have_content('Programador Ruby-Padrino')
-  page.should have_content('Ciudad de Buenos Aires')
-  page.should have_content('Buscamos alguien capaz de trabajar en el proyecto Job Vacancy')
+  page.should have_content(@title)
+  page.should have_content(@location)
+  page.should have_content(@description)
 end
 
 When(/^I press the clone button for my offer$/) do
@@ -23,9 +23,10 @@ When(/^I press the clone button for my offer$/) do
 end
 
 Then(/^I should be able to edit a copy of it$/) do
-  #page.should have_content('Nueva oferta')
-  #page.should have_content(@location)
-  #page.should have_content(@description)
+  expect(URI.parse(current_url)).to have_content '/job_offers/clone'
+  expect(page.find_field('Title').value).to eq 'Nueva oferta' 
+  expect(page.find_field('Location').value).to eq @location 
+  expect(page.find_field('Description').value).to eq @description 
 end
 
 Given(/^I am editing my cloned offer$/) do
