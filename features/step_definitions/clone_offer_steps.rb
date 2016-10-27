@@ -1,5 +1,5 @@
 And(/^There is at least one existing offer posted by me$/) do
-  JobOffer.all.destroy
+  JobOffer.all.destroy #Necesario para probar el Clone.
   visit '/job_offers/new/'
   fill_in('job_offer[title]', :with => 'Programador Ruby-Padrino')
   fill_in('job_offer[location]', :with => 'Ciudad de Buenos Aires')
@@ -16,7 +16,8 @@ Given(/^I am watching the Ruby-Padrino offer$/) do
 end
 
 When(/^I press the clone button for my offer$/) do
-  click_button('Clone')
+  #click_button('Clone')
+  pending
 end
 
 Then(/^I should be able to edit a copy of it$/) do 
