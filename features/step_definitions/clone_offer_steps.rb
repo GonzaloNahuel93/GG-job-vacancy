@@ -22,12 +22,10 @@ When(/^I press the clone button for my offer$/) do
   click_link('Clone')
 end
 
-Then(/^I should be able to edit a copy of it$/) do 
-  #expect(URI.parse(current_url).path).to eq '/job_offers/new'
-  #page.should have_content(@title)
+Then(/^I should be able to edit a copy of it$/) do
+  #page.should have_content('Nueva oferta')
   #page.should have_content(@location)
   #page.should have_content(@description)
-  pending
 end
 
 Given(/^I am editing my cloned offer$/) do
