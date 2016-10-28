@@ -10,12 +10,7 @@ Feature: Clone Offer
   Scenario: Clone an existing offer
     Given I am watching the Ruby-Padrino offer
     When I press the clone button for my offer
-    Then I should be able to edit a copy of it
-
-  Scenario: Clone an existing offer and posting it with the original name
-    Given I am editing my cloned offer
-    When I try to post it with the same name as the original
-    Then It should show me an error message
+    Then I should be able to edit a copy of it 
 
   Scenario: Clone an existing offer and posting it with the same name as another offer posted by me
     Given I have previously created another offer named "Programador Python"
