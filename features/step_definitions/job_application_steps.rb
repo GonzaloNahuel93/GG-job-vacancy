@@ -1,4 +1,5 @@
 Given(/^only a "(.*?)" offer exists in the offers list$/) do | job_title |
+  JobOffer.all.destroy
   @job_offer = JobOffer.new
   @job_offer.owner = User.first
   @job_offer.title = job_title
@@ -12,7 +13,7 @@ Given(/^I access the offers list page$/) do
 end
 
 When(/^I apply$/) do
-  click_link 'Apply'
+  click_link('Apply') #Esto va a agarrar siempre la primer oferta, porque en caso de haber varias, el link 'Apply' genera ambiguedad
   fill_in('job_application[applicant_email]', :with => 'applicant@test.com')
   click_button('Apply')
 end

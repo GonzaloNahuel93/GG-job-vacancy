@@ -26,6 +26,14 @@ JobVacancy::App.controllers :job_offers do
     render 'job_offers/edit'
   end
 
+  get :clone, :with =>:offer_id  do
+    @job_offer = JobOffer.get(params[:offer_id])
+    title = @job_offer[:title]
+    @job_offer[:title] = 'Copy of ' + title
+    render 'job_offers/new'
+    # ToDo: validate the current user is the owner of the offer
+  end
+
   get :apply, :with =>:offer_id  do
     @job_offer = JobOffer.get(params[:offer_id])
     @job_application = JobApplication.new

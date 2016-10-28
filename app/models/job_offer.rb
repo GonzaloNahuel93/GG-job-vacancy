@@ -29,6 +29,10 @@ class JobOffer
 		JobOffer.all(:user => user)
 	end
 
+	def self.find_by_id(id)
+		JobOffer.all(:id => id)
+	end
+
 	def self.deactivate_old_offers
 		active_offers = JobOffer.all(:is_active => true)
 
@@ -46,6 +50,10 @@ class JobOffer
 
 	def deactivate
 		self.is_active = false
+	end
+
+	def get_title
+		JobOffer.title
 	end
 
 end
