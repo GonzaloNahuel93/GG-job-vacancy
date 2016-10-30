@@ -20,13 +20,13 @@ JobVacancy::App.controllers :job_offers do
     render 'job_offers/list'
   end
 
-  get :edit, :with =>:offer_id  do
+  get :edit, :with => :offer_id  do
     @job_offer = JobOffer.get(params[:offer_id])
     # ToDo: validate the current user is the owner of the offer
     render 'job_offers/edit'
   end
 
-  get :clone, :with =>:offer_id  do
+  get :clone, :with => :offer_id  do
     @job_offer = JobOffer.get(params[:offer_id])
     title = @job_offer[:title]
     @job_offer[:title] = 'Copy of ' + title
@@ -63,6 +63,9 @@ JobVacancy::App.controllers :job_offers do
       if params['create_and_twit']
         TwitterClient.publish(@job_offer)
       end
+      #if(user_has_offers_with_the_same_title?) 
+       # flash.now[:error] = 'You already have an offer with the same title'
+      #end  
       flash[:success] = 'Offer created'
       redirect '/job_offers/my'
     else

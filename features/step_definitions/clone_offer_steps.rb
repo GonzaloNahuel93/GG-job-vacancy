@@ -30,7 +30,7 @@ Then(/^I should be able to edit a copy of it$/) do
 end
 
 Given(/^I have previously created another offer named "(.*?)"$/) do |offer_title|
-  @another_offers_title
+  @another_offers_title = offer_title
   visit '/job_offers/new/'
   fill_in('job_offer[title]', :with => @another_offers_title)
   fill_in('job_offer[location]', :with => 'Canada')
@@ -39,18 +39,18 @@ Given(/^I have previously created another offer named "(.*?)"$/) do |offer_title
 end
 
 And(/^I am editing my cloned offer$/) do
-  #visit '/job_offers/clone/3'
-  #page.should have_content '@another_offers_title'
-  pending
+  visit '/job_offers/my'
+  page.should have_content @another_offers_title
+  all(:xpath, "(//a[text()='Clone'])")[1].click
+  expect(page.find_field('Title').value).to have_content @another_offers_title
 end
 
 When(/^I try to post the cloned offer naming it "(.*?)"$/) do |offer_title|
-  #fill_in('job_offer[title]', :with => offer_title)
-  #click_button('Create')
-  pending
+  fill_in('job_offer[title]', :with => offer_title)
+  click_button('Create')
 end
 
 Then(/^It should show me an error message$/) do 
-  #page.should have_content('Error')
   pending
+  #page.should have_content('You already have an offer with the same title')
 end
