@@ -21,6 +21,10 @@ class JobOffer
 		self.user = a_user
 	end
 
+	def set_title(a_title)
+		self.title = a_title
+	end
+
 	def self.all_active
 		JobOffer.all(:is_active => true)
 	end
@@ -53,7 +57,7 @@ class JobOffer
 	end
 
 	def get_title
-		JobOffer.title
+		self.title
 	end
 
 end

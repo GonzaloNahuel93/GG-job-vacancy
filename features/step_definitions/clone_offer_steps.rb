@@ -51,6 +51,5 @@ When(/^I try to post the cloned offer naming it "(.*?)"$/) do |offer_title|
 end
 
 Then(/^It should show me an error message$/) do 
-  pending
-  #page.should have_content('You already have an offer with the same title')
+  page.should have_content('You already have an offer with the same title')
 end

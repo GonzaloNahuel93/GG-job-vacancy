@@ -26,4 +26,17 @@ class User
     ::BCrypt::Password.new(crypted_password) == password
   end
 
+  def has_offers_with_the_given_title? title
+    job_offers.each do |actual|
+      if (actual.get_title == title)
+        return true
+      end  
+    end  
+    return false
+  end 
+
+  def get_offers
+    job_offers
+  end
+
 end

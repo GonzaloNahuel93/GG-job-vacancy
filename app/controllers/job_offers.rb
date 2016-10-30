@@ -59,20 +59,25 @@ JobVacancy::App.controllers :job_offers do
   post :create do
     @job_offer = JobOffer.new(params[:job_offer])
     @job_offer.owner = current_user
-    if @job_offer.save
-      if params['create_and_twit']
-        TwitterClient.publish(@job_offer)
-      end
-      #if(user_has_offers_with_the_same_title?) 
-       # flash.now[:error] = 'You already have an offer with the same title'
-      #end  
-      flash[:success] = 'Offer created'
-      redirect '/job_offers/my'
-    else
-      flash.now[:error] = 'Title is mandatory'
+    if @job_offer.owner.has_offers_with_the_given_title? @job_offer.get_title
+      flash.now[:error] = 'You already have an offer with the same title'
       render 'job_offers/new'
-    end  
+    else
+      if @job_offer.save
+        if params['create_and_twit']
+          TwitterClient.publish(@job_offer)
+        end 
+        flash[:success] = 'Offer created'
+        redirect '/job_offers/my'
+      else
+        flash.now[:error] = 'Title is mandatory'
+        render 'job_offers/new'
+      end  
+    end
   end
+
+
+
 
   post :update, :with => :offer_id do
     @job_offer = JobOffer.get(params[:offer_id])
@@ -107,5 +112,7 @@ JobVacancy::App.controllers :job_offers do
     end
     redirect 'job_offers/my'
   end
+
+  private
 
 end

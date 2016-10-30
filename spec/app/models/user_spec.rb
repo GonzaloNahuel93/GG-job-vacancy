@@ -77,5 +77,32 @@ describe User do
 
 	end
 
+	describe 'has_offers_with_the_given_title?' do
+
+		before do
+
+      @user = User.new
+			@user.name = 'John Doe'
+			@user.email = 'john.doe@someplace.com'
+		 	@user.password = 'a_secure_passW0rd!'
+			job_offer = JobOffer.new
+			job_offer.set_title 'Title1'
+			job_offer.owner = @user
+			@user.job_offers.push job_offer
+
+		end
+
+		it 'should return true when asked about a title that already exists' do
+			result = @user.has_offers_with_the_given_title?("Title1")
+			expect(result).to eq true
+		end
+
+		it 'should return false when asked about a title that does not exist yet' do
+			result = @user.has_offers_with_the_given_title?("Title2")
+			expect(result).to eq false
+		end
+
+	end	
+
 end
 
