@@ -24,7 +24,7 @@ When(/^confirm the new offer$/) do
 end
 
 Then(/^I should see "(.*?)" in My Offers$/) do |content|
-	visit '/job_offers/my'
+  visit '/job_offers/my'
   page.should have_content(content)
 end
 
@@ -56,3 +56,40 @@ end
 Given(/^I save the modification$/) do
   click_button('Save')
 end
+
+#Acá escribo los steps del Escenario "Edit offer with a title of other offer"
+Given(/^I have 'Programmer Ruby' and 'Programmer Java' offers in My Offers$/) do
+  visit '/job_offers/new/'
+  fill_in('job_offer[title]', :with => 'Programmer Ruby')
+  fill_in('job_offer[location]', :with => 'Buenos Aires')
+  fill_in('job_offer[description]', :with => 'I want a programmer Ruby')
+  click_button('Create')
+
+  visit '/job_offers/new/'
+  fill_in('job_offer[title]', :with => 'Programmer Java')
+  fill_in('job_offer[location]', :with => 'Santa Fe')
+  fill_in('job_offer[description]', :with => 'I want a programmer Java')
+  click_button('Create')
+
+  page.should have_content('Programmer Ruby')
+  page.should have_content('Programmer Java')
+end
+
+And(/^I edit 'Programmer Java'$/) do
+  visit '/job_offers/my'
+  all(:xpath, "(//a[text()='Edit'])")[1].click
+end
+
+And(/^I set title to 'Programmer Ruby'$/) do
+  fill_in('job_offer[title]', :with => 'Programmer Ruby')
+end
+
+And(/^I click the button 'Save'$/) do
+  click_button('Save')
+end
+
+Then(/^I should see the error 'You already have an offer with the same title'$/) do
+  #page.should have_content('You already have an offer with the same title')
+  pending
+end
+###

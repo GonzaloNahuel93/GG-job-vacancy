@@ -79,17 +79,19 @@ JobVacancy::App.controllers :job_offers do
 
     @job_offer = JobOffer.get(params[:offer_id])
     @job_offer.update(params[:job_offer])
+    
     if @job_offer.save
       flash[:success] = 'Offer updated'
       redirect '/job_offers/my'
     else
       flash.now[:error] = 'Title is mandatory'
       render 'job_offers/edit'
-    end  
+    end
 
     #@job_offer = JobOffer.get(params[:offer_id])
+    #title = params[:title]
 
-    #if @job_offer.owner.has_offers_with_the_given_title? @job_offer
+    #if ( (@job_offer.owner.has_offers_with_this_title? title) && (@job_offer.owner.has_offers_with_the_given_title? @job_offer) )
     #  flash.now[:error] = 'You already have an offer with the same title'
     #  render 'job_offers/edit'
     #else
