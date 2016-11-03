@@ -79,9 +79,8 @@ JobVacancy::App.controllers :job_offers do
 
     @job_offer = JobOffer.get(params[:offer_id])
     form_offer = params[:job_offer]
-    title = form_offer[:title]
 
-    if ( (@job_offer.owner.has_offers_with_this_title? title) )
+    if ( (@job_offer.owner.has_offers_with_this_title? form_offer[:title]) && (!@job_offer.owner.has_offers_with_the_same_title_as_the_given? @job_offer) )
       flash.now[:error] = 'You already have an offer with the same title'
       render 'job_offers/edit'
     else
