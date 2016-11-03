@@ -37,6 +37,12 @@ class JobOffer
 		JobOffer.all(:id => id)
 	end
 
+	def self.find_by_owner_and_title(owner, title)
+		offers_by_owner = JobOffer.all(:user => user)
+		offers_by_title = JobOffer.all(:title => title)
+		return (offers_by_owner & offers_by_title)
+	end
+
 	def self.deactivate_old_offers
 		active_offers = JobOffer.all(:is_active => true)
 
