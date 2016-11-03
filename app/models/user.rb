@@ -48,4 +48,12 @@ class User
     job_offers
   end
 
+  def which_offer_has_this_title? title
+    job_offers.each do |actual|
+      if (actual.get_title == title)
+        return actual
+      end
+    end
+  end
+
 end

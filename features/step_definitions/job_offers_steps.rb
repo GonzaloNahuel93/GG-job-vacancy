@@ -59,6 +59,7 @@ end
 
 #Acá escribo los steps del Escenario "Edit offer with a title of other offer"
 Given(/^I have the Ruby Programmer and Java Programmer offers in My Offers$/) do
+  JobOffer.all.destroy
   visit '/job_offers/new/'
   fill_in('job_offer[title]', :with => 'Ruby Programmer')
   fill_in('job_offer[location]', :with => 'Buenos Aires')
@@ -77,7 +78,7 @@ end
 
 And(/^I edit the Java Programmer offer$/) do
   visit '/job_offers/my'
-  all(:xpath, "(//a[text()='Edit'])")[2].click
+  all(:xpath, "(//a[text()='Edit'])")[1].click
   page.should have_content('Java Programmer')
 end
 
@@ -87,4 +88,8 @@ end
 
 And(/^I click the Save button$/) do
   click_button('Save')
+end
+
+Then(/^I should not see the error 'You already have an offer with the same title'$/) do 
+  page.should_not have_content('You already have an offer with the same title')
 end

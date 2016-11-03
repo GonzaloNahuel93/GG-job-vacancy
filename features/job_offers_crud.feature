@@ -28,6 +28,13 @@ Feature: Job Offers CRUD
     And I click the Save button
     Then I should see the error 'You already have an offer with the same title'
 
+  Scenario: Edit an offer and save it with the same title
+    Given I have the Ruby Programmer and Java Programmer offers in My Offers
+    And I edit the Java Programmer offer
+    And I click the Save button
+    Then I should not see the error 'You already have an offer with the same title'
+    And I should see "Java Programmer" in My Offers
+
   Scenario: Delete offer
     Given I have "Programmer vacancy" offer in My Offers
     Given I delete it

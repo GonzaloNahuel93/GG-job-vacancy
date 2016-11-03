@@ -103,7 +103,7 @@ describe User do
 		end
 
 		it 'should return false when asked if there is an offer with the same title and different id than the given' do
-            job_offer = JobOffer.new
+      job_offer = JobOffer.new
 			job_offer[:id] = 2
 			job_offer.set_title 'Title2'
 
@@ -127,6 +127,11 @@ describe User do
 
 			result = @user.has_offers_with_this_title? 'Title2'
 			expect(result).to eq false
+    end
+
+		it 'should return the offer with id 1 when asked about the Title1 offer' do
+			result = @user.which_offer_has_this_title? 'Title1'
+			expect(result.id).to eq 1
 		end
 
 	end	
