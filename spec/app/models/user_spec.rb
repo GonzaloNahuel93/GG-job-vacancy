@@ -93,21 +93,39 @@ describe User do
 
 		end
 
-		it 'should return true when asked about a title that already exists' do
+		it 'should return true when asked if there is an offer with the same title and different id than the given' do
 			job_offer = JobOffer.new
 			job_offer[:id] = 2
 			job_offer.set_title 'Title1'
 
-			result = @user.has_offers_with_the_given_title?(job_offer)
+			result = @user.has_offers_with_the_same_title_as_the_given?(job_offer)
 			expect(result).to eq true
 		end
 
-		it 'should return false when asked about a title that does not exist yet' do
+		it 'should return false when asked if there is an offer with the same title and different id than the given' do
             job_offer = JobOffer.new
 			job_offer[:id] = 2
 			job_offer.set_title 'Title2'
 
-			result = @user.has_offers_with_the_given_title?(job_offer)
+			result = @user.has_offers_with_the_same_title_as_the_given?(job_offer)
+			expect(result).to eq false
+		end
+
+		it 'should return true when asked if there is an offer with the given title' do
+			job_offer = JobOffer.new
+			job_offer[:id] = 2
+			job_offer.set_title 'Title1'
+
+			result = @user.has_offers_with_this_title? 'Title1'
+			expect(result).to eq true
+		end
+
+		it 'should return false when asked if there is an offer with the given title' do
+            job_offer = JobOffer.new
+			job_offer[:id] = 2
+			job_offer.set_title 'Title2'
+
+			result = @user.has_offers_with_this_title? 'Title2'
 			expect(result).to eq false
 		end
 

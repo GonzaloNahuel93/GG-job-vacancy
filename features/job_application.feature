@@ -10,3 +10,10 @@ Feature: Job Application
     Given I access the offers list page
     When I apply
     Then I should receive a mail with offerer info
+
+  Scenario: Apply to job offer with an invalid email address
+    Given I access the offers list page
+    And I enter an invalid email address
+    When I apply
+    Then I should not be able to apply 
+    And I should see the error 'Please enter a valid email address'

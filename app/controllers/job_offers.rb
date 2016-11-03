@@ -58,7 +58,7 @@ JobVacancy::App.controllers :job_offers do
   post :create do
     @job_offer = JobOffer.new(params[:job_offer])
     @job_offer.owner = current_user
-    if @job_offer.owner.has_offers_with_the_given_title? @job_offer
+    if @job_offer.owner.has_offers_with_the_same_title_as_the_given? @job_offer
       flash.now[:error] = 'You already have an offer with the same title'
       render 'job_offers/new'
     else
@@ -78,32 +78,23 @@ JobVacancy::App.controllers :job_offers do
   post :update, :with => :offer_id do
 
     @job_offer = JobOffer.get(params[:offer_id])
-    @job_offer.update(params[:job_offer])
-    
-    if @job_offer.save
-      flash[:success] = 'Offer updated'
-      redirect '/job_offers/my'
-    else
-      flash.now[:error] = 'Title is mandatory'
+    form_offer = params[:job_offer]
+    title = form_offer[:title]
+
+    if ( (@job_offer.owner.has_offers_with_this_title? title) )
+      flash.now[:error] = 'You already have an offer with the same title'
       render 'job_offers/edit'
+    else
+      @job_offer.update(params[:job_offer])
+      if @job_offer.save
+        flash[:success] = 'Offer updated'
+        redirect '/job_offers/my'
+      else
+        flash.now[:error] = 'Title is mandatory'
+        render 'job_offers/edit'
+      end  
     end
 
-    #@job_offer = JobOffer.get(params[:offer_id])
-    #title = params[:title]
-
-    #if ( (@job_offer.owner.has_offers_with_this_title? title) && (@job_offer.owner.has_offers_with_the_given_title? @job_offer) )
-    #  flash.now[:error] = 'You already have an offer with the same title'
-    #  render 'job_offers/edit'
-    #else
-    #  @job_offer.update(params[:job_offer])
-    #  if @job_offer.save
-    #    flash[:success] = 'Offer updated'
-    #    redirect '/job_offers/my'
-    #  else
-    #    flash.now[:error] = 'Title is mandatory'
-    #    render 'job_offers/edit'
-    #  end  
-    #end
   end
 
   put :activate, :with => :offer_id do

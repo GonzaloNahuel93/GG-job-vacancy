@@ -58,38 +58,33 @@ Given(/^I save the modification$/) do
 end
 
 #Acá escribo los steps del Escenario "Edit offer with a title of other offer"
-Given(/^I have 'Programmer Ruby' and 'Programmer Java' offers in My Offers$/) do
+Given(/^I have the Ruby Programmer and Java Programmer offers in My Offers$/) do
   visit '/job_offers/new/'
-  fill_in('job_offer[title]', :with => 'Programmer Ruby')
+  fill_in('job_offer[title]', :with => 'Ruby Programmer')
   fill_in('job_offer[location]', :with => 'Buenos Aires')
-  fill_in('job_offer[description]', :with => 'I want a programmer Ruby')
+  fill_in('job_offer[description]', :with => 'I am looking for a Ruby Programmer')
   click_button('Create')
 
   visit '/job_offers/new/'
-  fill_in('job_offer[title]', :with => 'Programmer Java')
+  fill_in('job_offer[title]', :with => 'Java Programmer')
   fill_in('job_offer[location]', :with => 'Santa Fe')
-  fill_in('job_offer[description]', :with => 'I want a programmer Java')
+  fill_in('job_offer[description]', :with => 'I am looking for a Java Programmer')
   click_button('Create')
 
-  page.should have_content('Programmer Ruby')
-  page.should have_content('Programmer Java')
+  page.should have_content('Ruby Programmer')
+  page.should have_content('Java Programmer')
 end
 
-And(/^I edit 'Programmer Java'$/) do
+And(/^I edit the Java Programmer offer$/) do
   visit '/job_offers/my'
-  all(:xpath, "(//a[text()='Edit'])")[1].click
+  all(:xpath, "(//a[text()='Edit'])")[2].click
+  page.should have_content('Java Programmer')
 end
 
-And(/^I set title to 'Programmer Ruby'$/) do
-  fill_in('job_offer[title]', :with => 'Programmer Ruby')
+And(/^I set Ruby Programmer as the new title$/) do
+  fill_in('job_offer[title]', :with => 'Ruby Programmer')
 end
 
-And(/^I click the button 'Save'$/) do
+And(/^I click the Save button$/) do
   click_button('Save')
 end
-
-Then(/^I should see the error 'You already have an offer with the same title'$/) do
-  #page.should have_content('You already have an offer with the same title')
-  pending
-end
-###

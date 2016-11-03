@@ -28,3 +28,13 @@ Then(/^I should receive a mail with offerer info$/) do
   content.include?(@job_offer.owner.email).should be true
   content.include?(@job_offer.owner.name).should be true
 end
+
+And(/^I I enter an invalid mail address$/) do
+    #fill_in('job_application[applicant_email]', :with => 'mail')
+    pending
+end
+
+And(/^I I enter an invalid mail address$/) do
+    #fill_in('job_application[applicant_email]', :with => 'mail')
+    pending
+end

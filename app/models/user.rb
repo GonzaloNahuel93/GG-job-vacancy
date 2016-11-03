@@ -35,7 +35,7 @@ class User
     return false
   end
 
-  def has_offers_with_the_given_title? job_offer
+  def has_offers_with_the_same_title_as_the_given? job_offer
     job_offers.each do |actual|
       if (actual.get_title == job_offer.get_title && actual.id != job_offer.id)
         return true

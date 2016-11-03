@@ -21,11 +21,11 @@ Feature: Job Offers CRUD
     Then I should see "Offer updated"
     And I should see "Programmer vacancy!!!" in My Offers
 
-Scenario: Edit offer with a title of other offer
-    Given I have 'Programmer Ruby' and 'Programmer Java' offers in My Offers
-    And I edit 'Programmer Java'
-    And I set title to 'Programmer Ruby'
-    And I click the button 'Save'
+  Scenario: Edit an offer and save it with an existing title
+    Given I have the Ruby Programmer and Java Programmer offers in My Offers
+    And I edit the Java Programmer offer
+    And I set Ruby Programmer as the new title
+    And I click the Save button
     Then I should see the error 'You already have an offer with the same title'
 
   Scenario: Delete offer

@@ -16,4 +16,4 @@ Feature: Clone Offer
     Given I have previously created another offer named "Programador Python"
     And I am editing my cloned offer
     When I try to post the cloned offer naming it "Programador Python"
-    Then It should show me an error message
+    Then I should see the error 'You already have an offer with the same title'

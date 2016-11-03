@@ -50,6 +50,6 @@ When(/^I try to post the cloned offer naming it "(.*?)"$/) do |offer_title|
   click_button('Create')
 end
 
-Then(/^It should show me an error message$/) do 
+Then(/^I should see the error 'You already have an offer with the same title'$/) do 
   page.should have_content('You already have an offer with the same title')
 end
