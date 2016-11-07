@@ -8,10 +8,6 @@ Given(/^only a "(.*?)" offer exists in the offers list$/) do | job_title |
   @job_offer.save
 end
 
-Given(/^I access the offers list page$/) do
-  visit '/job_offers'
-end
-
 When(/^I apply$/) do
   click_link('Apply') #Esto va a agarrar siempre la primer oferta, porque en caso de haber varias, el link 'Apply' genera ambiguedad
   fill_in('job_application[applicant_email]', :with => 'applicant@test.com')
@@ -29,12 +25,19 @@ Then(/^I should receive a mail with offerer info$/) do
   content.include?(@job_offer.owner.name).should be true
 end
 
-And(/^I I enter an invalid mail address$/) do
-    #fill_in('job_application[applicant_email]', :with => 'mail')
-    pending
+Given(/^I access the offers list page$/) do
+  visit '/job_offers'
 end
 
-And(/^I I enter an invalid mail address$/) do
-    #fill_in('job_application[applicant_email]', :with => 'mail')
-    pending
+When(/^I click apply$/) do
+  click_link('Apply')
+end
+
+And(/^I enter an invalid email address for apply$/) do
+  fill_in('job_application[applicant_email]', :with => 'Hello World!')
+  click_button('Apply')
+end
+
+Then(/^I should see the error 'Please enter a valid email address'$/) do
+  page.should have_content('Please enter a valid email address')
 end

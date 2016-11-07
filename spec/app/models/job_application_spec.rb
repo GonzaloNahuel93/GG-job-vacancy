@@ -41,4 +41,38 @@ describe JobApplication do
 
 	end
 
+	describe 'valid_email?' do
+
+      before do
+        email = 'oneemail@test.com'
+	  	@job_application = JobApplication.create_for(email, JobOffer.new)
+      end
+
+	  it 'Should return true when i enter the valid email -oneemail@gmail.com-' do
+        result = @job_application.valid_email? 'oneemail@gmail.com'
+	    expect(result).to eq true
+	  end
+
+	  it 'Should return true when i enter the valid email -this.is.a.email@untref.arg-' do
+        result = @job_application.valid_email? 'this.is.a.email@untref.arg'
+	    expect(result).to eq true
+	  end
+
+	  it 'Should return false when i enter the invalid email -Hello World!-' do
+        result = @job_application.valid_email? 'Hello World!'
+	    expect(result).to eq false
+	  end
+
+	  it 'Should return false when i enter the invalid email -a.email@@test.com-' do
+        result = @job_application.valid_email? 'a.email@@test.com'
+	    expect(result).to eq false
+	  end
+
+	  it 'Should return false when i enter the invalid email -e.email@test-' do
+        result = @job_application.valid_email? 'e.email@test'
+	    expect(result).to eq false
+	  end
+
+	end
+
 end

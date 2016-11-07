@@ -13,7 +13,6 @@ Feature: Job Application
 
   Scenario: Apply to job offer with an invalid email address
     Given I access the offers list page
-    And I enter an invalid email address
-    When I apply
-    Then I should not be able to apply 
-    And I should see the error 'Please enter a valid email address'
+    When I click apply
+    And I enter an invalid email address for apply
+    Then I should see the error 'Please enter a valid email address'
