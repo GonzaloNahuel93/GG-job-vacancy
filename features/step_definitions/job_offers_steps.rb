@@ -45,9 +45,6 @@ Given(/^I edit it$/) do
   click_link('Edit')
 end
 
-And(/^I delete it$/) do
-  click_button('Delete')
-end
 
 Given(/^I set title to "(.*?)"$/) do |new_title|
   fill_in('job_offer[title]', :with => new_title)
@@ -86,10 +83,17 @@ And(/^I set Ruby Programmer as the new title$/) do
   fill_in('job_offer[title]', :with => 'Ruby Programmer')
 end
 
-And(/^I click the Save button$/) do
-  click_button('Save')
+When(/^I click the "(.*?)" button$/) do |button|
+  click_button(button)  
 end
 
 Then(/^I should not see the error 'You already have an offer with the same title'$/) do 
   page.should_not have_content('You already have an offer with the same title')
 end
+
+When(/^I delete it$/) do 
+  visit '/job_offers/my'
+  click_link('Delete')  
+end
+
+

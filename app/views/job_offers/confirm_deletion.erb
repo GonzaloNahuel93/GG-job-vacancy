@@ -1,0 +1,14 @@
+<h1>Are you sure you want to delete the offer?</h1>
+<table>
+	<tr>
+		<td>
+			<%- form_tag url(:job_offers, :destroy, :offer_id => @job_offer.id), :method => :delete, :style => 'display:inline' do %>
+                <button type='submit' title="Yes" rel='tooltip' class="btn btn-secondary" >Yes
+                </button>
+	        <% end %>
+		</td>
+		<td>
+			<%= link_to 'No', url_for(:job_offers, :my), :class => "btn btn-primary" %>
+		</td>
+	</tr>
+</table>

@@ -114,6 +114,11 @@ JobVacancy::App.controllers :job_offers do
     end  
   end
 
+  get :delete, :with => :offer_id  do
+    @job_offer = JobOffer.get(params[:offer_id])
+    render '/job_offers/confirm_deletion'
+  end
+
   delete :destroy do
     @job_offer = JobOffer.get(params[:offer_id])
     if @job_offer.destroy
@@ -124,6 +129,6 @@ JobVacancy::App.controllers :job_offers do
     redirect 'job_offers/my'
   end
 
-  private
+
 
 end
