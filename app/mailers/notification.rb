@@ -49,7 +49,7 @@ JobVacancy::App.mailer :notification do
            :email => job_application.job_offer.owner.email
     content_type :plain
     via :sendmail
-    render 'notification/contant_info_email'
+    render 'notification/contact_info_email'
   end
 
   email :offerer_info_email do | job_application |
@@ -60,7 +60,7 @@ JobVacancy::App.mailer :notification do
            :applicant_email => job_application.applicant_email
     content_type :plain
     via :sendmail 
-    render 'notification/contant_info_email'
+    render 'notification/offerer_info_email'
   end
 
 end
