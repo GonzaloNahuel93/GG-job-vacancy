@@ -47,6 +47,7 @@ JobVacancy::App.mailer :notification do
     subject 'Job Application: Información al Aplicante'
     locals :job_offer => job_application.job_offer
     content_type :plain
+    via :sendmail
     render 'notification/contant_info_email'
   end
 
@@ -56,6 +57,7 @@ JobVacancy::App.mailer :notification do
     subject 'Job Application: Información al Offerer'
     locals :job_offer => job_application.job_offer
     content_type :plain
+    via :sendmail 
     render 'notification/contant_info_email'
   end
 
