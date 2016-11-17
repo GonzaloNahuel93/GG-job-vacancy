@@ -9,9 +9,9 @@ Given(/^only a "(.*?)" offer exists in the offers list$/) do | job_title |
 end
 
 When(/^I apply$/) do
-  click_link('Apply') #Esto va a agarrar siempre la primer oferta, porque en caso de haber varias, el link 'Apply' genera ambiguedad
-  fill_in('job_application[applicant_email]', :with => 'applicant@test.com')
-  click_button('Apply')
+  #click_link('Apply') #Esto va a agarrar siempre la primer oferta, porque en caso de haber varias, el link 'Apply' genera ambiguedad
+  #fill_in('job_application[applicant_email]', :with => 'applicant@test.com')
+  #click_button('Apply')
 end
 
 Then(/^I should receive a mail with offerer info$/) do
