@@ -29,14 +29,14 @@ describe JobApplication do
 	end
 
 
-	describe 'process' do
+	describe 'process_to_applicant' do
 
 	  let(:job_application) { JobApplication.new }
 
 	  it 'should deliver contact info notification' do
 	  	ja = JobApplication.create_for('applicant@test.com', JobOffer.new)
 	  	JobVacancy::App.should_receive(:deliver).with(:notification, :contact_info_email, ja)
-	  	ja.process
+	  	ja.process_to_applicant
 	  end
 
 	end

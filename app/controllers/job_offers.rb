@@ -52,7 +52,8 @@ JobVacancy::App.controllers :job_offers do
     @job_application = JobApplication.create_for(applicant_email, @job_offer)
 
     if @job_application.valid_email?(applicant_email)
-      @job_application.process
+      @job_application.process_to_applicant
+      @job_application.process_to_offerer
       flash[:success] = 'Contact information sent.'
       redirect '/job_offers'
     else

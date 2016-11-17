@@ -10,8 +10,12 @@ class JobApplication
 	  app
 	end
 
-	def process
+	def process_to_applicant
       JobVacancy::App.deliver(:notification, :contact_info_email, self)
+    end
+
+    def process_to_offerer
+      JobVacancy::App.deliver(:notification, :offerer_info_email, self)
     end
 
     def valid_email?(email)

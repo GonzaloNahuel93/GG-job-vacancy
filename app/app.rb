@@ -13,6 +13,15 @@ module JobVacancy
       :location => "#{Padrino.root}/tmp/emails",
     }
 
+    set :delivery_method, :smtp => {
+     :address         => 'smtp.gmail.com',
+     :port            => '587',
+     :user_name       => 'informationjobvacancy2016@gmail.com',
+     :password        => 'JobVacancy2016',
+     :authentication  => :login, # :plain, :login, :cram_md5, no auth by default
+     :domain          => "gmail.com",
+   }
+
     ##
     # Caching support
     #

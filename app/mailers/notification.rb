@@ -42,9 +42,18 @@
 JobVacancy::App.mailer :notification do
 
   email :contact_info_email do | job_application |
-    from 'no_reply@jobvacancy.com'
+    from 'informationjobvacancy2016@gmail.com'
     to job_application.applicant_email
-    subject 'Job Application: Contact information'
+    subject 'Job Application: Información al Aplicante'
+    locals :job_offer => job_application.job_offer
+    content_type :plain
+    render 'notification/contant_info_email'
+  end
+
+  email :offerer_info_email do | job_application |
+    from 'informationjobvacancy2016@gmail.com'
+    to job_application.job_offer.owner.email
+    subject 'Job Application: Información al Offerer'
     locals :job_offer => job_application.job_offer
     content_type :plain
     render 'notification/contant_info_email'
