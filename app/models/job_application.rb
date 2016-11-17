@@ -6,7 +6,7 @@ class JobApplication
 	def self.create_for(email, offer)
 	  app = JobApplication.new
 	  app.applicant_email = email
-      app.job_offer = offer
+    app.job_offer = offer
 	  app
 	end
 
