@@ -49,7 +49,7 @@ JobVacancy::App.mailer :notification do
            :email => job_application.job_offer.owner.email
     content_type :plain
     via :sendmail
-    render 'notification/contact_info_email'
+    render 'notification/application_info_to_applicant'
   end
 
   email :application_info_to_owner do | job_application |
@@ -59,11 +59,12 @@ JobVacancy::App.mailer :notification do
     locals :job_offer => job_application.job_offer,
            :first_name => job_application.first_name,
            :last_name => job_application.last_name,
+           :applicant_email => job_application.applicant_email,
            :presentation => job_application.presentation,
            :curriculum => job_application.curriculum
     content_type :plain
     via :sendmail 
-    render 'notification/offerer_info_email'
+    render 'notification/application_info_to_owner'
   end
 
 end
