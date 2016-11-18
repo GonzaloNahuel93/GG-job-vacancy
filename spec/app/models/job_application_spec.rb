@@ -16,14 +16,38 @@ describe JobApplication do
 
 	  it 'should set applicant_email' do
 	  	email = 'applicant@test.com'
-	  	ja = JobApplication.create_for(email, JobOffer.new)
+	  	ja = JobApplication.create_for(email, 'John', 'Doe', 'Hi Im John', 'www.johncurriculum.net', JobOffer.new)
 	  	ja.applicant_email.should eq email
 	  end
 
 	  it 'should set job_offer' do
 	  	offer = JobOffer.new
-	  	ja = JobApplication.create_for('applicant@test.com', offer)
+	  	ja = JobApplication.create_for('applicant@test.com', 'John', 'Doe', 'Hi Im John', 'www.johncurriculum.net', offer)
 	  	ja.job_offer.should eq offer
+	  end
+
+	  it 'should set first name' do
+	  	applic_name = 'John'
+	  	ja = JobApplication.create_for('applicant@test.com', applic_name, 'Doe', 'Hi Im John', 'www.johncurriculum.net', JobOffer.new)
+	  	ja.first_name.should eq applic_name
+	  end
+
+	  it 'should set last name' do
+	  	applic_last_name = 'Doe'
+	  	ja = JobApplication.create_for('applicant@test.com', 'John', applic_last_name, 'Hi Im John', 'www.johncurriculum.net', JobOffer.new)
+	  	ja.last_name.should eq applic_last_name
+	  end
+
+	  it 'should set presentation' do
+	  	presentation = 'Hi Im John'
+	  	ja = JobApplication.create_for('applicant@test.com', 'John', 'Doe', presentation, 'www.johncurriculum.net', JobOffer.new)
+	  	ja.presentation.should eq presentation
+	  end
+
+	  it 'should set curriculum' do
+	  	curriculum = 'www.johncurriculum.net'
+	  	ja = JobApplication.create_for('applicant@test.com', 'John', 'Doe', 'Hi Im John', curriculum, JobOffer.new)
+	  	ja.curriculum.should eq curriculum
 	  end
 
 	end
@@ -34,8 +58,8 @@ describe JobApplication do
 	  let(:job_application) { JobApplication.new }
 
 	  it 'should deliver contact info notification' do
-	  	ja = JobApplication.create_for('applicant@test.com', JobOffer.new)
-	  	JobVacancy::App.should_receive(:deliver).with(:notification, :contact_info_email, ja)
+	  	ja = JobApplication.create_for('applicant@test.com', 'John', 'Doe', 'Hi Im John', 'www.johncurriculum.net', JobOffer.new)
+	  	JobVacancy::App.should_receive(:deliver).with(:notification, :application_info_to_applicant, ja)
 	  	ja.process_to_applicant
 	  end
 
@@ -45,7 +69,7 @@ describe JobApplication do
 
       before do
         email = 'oneemail@test.com'
-	  	@job_application = JobApplication.create_for(email, JobOffer.new)
+	  	@job_application = JobApplication.create_for(email, 'John', 'Doe', 'Hi Im John', 'www.johncurriculum.net', JobOffer.new)
       end
 
 	  it 'Should return true when i enter the valid email -oneemail@gmail.com-' do
