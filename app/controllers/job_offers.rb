@@ -47,9 +47,15 @@ JobVacancy::App.controllers :job_offers do
   end
 
   post :apply, :with => :offer_id do
+
     @job_offer = JobOffer.get(params[:offer_id])    
     applicant_email = params[:job_application][:applicant_email]
-    @job_application = JobApplication.create_for(applicant_email, @job_offer)
+    first_name = params[:job_application][:first_name]
+    last_name = params[:job_application][:last_name]
+    presentation = params[:job_application][:presentation]
+    curriculum = params[:job_application][:curriculum]
+
+    @job_application = JobApplication.create_for(applicant_email, first_name, last_name, presentation, curriculum, @job_offer)
 
     if @job_application.valid_email?(applicant_email)
       @job_application.process_to_applicant
