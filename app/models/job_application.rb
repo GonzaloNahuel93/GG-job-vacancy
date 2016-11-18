@@ -1,7 +1,11 @@
 class JobApplication
 
 	attr_accessor :applicant_email
-	attr_accessor :job_offer
+  attr_accessor :first_name
+  attr_accessor :last_name
+	attr_accessor :presentation
+  attr_accessor :curriculum
+  attr_accessor :job_offer
 
 	def self.create_for(email, offer)
 	  app = JobApplication.new

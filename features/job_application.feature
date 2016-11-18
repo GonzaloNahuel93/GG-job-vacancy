@@ -16,3 +16,8 @@ Feature: Job Application
     When I click apply
     And I enter an invalid email address for apply
     Then I should see the error 'Please enter a valid email address'
+
+  Scenario: Apply to job offer with all the required data
+    Given I access the offers list page
+    When I click apply
+    Then I should be able to see 'First Name', 'Last Name', 'Presentation' and 'Curriculum' fields

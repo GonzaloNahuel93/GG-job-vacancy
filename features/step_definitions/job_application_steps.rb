@@ -42,3 +42,10 @@ end
 Then(/^I should see the error 'Please enter a valid email address'$/) do
   page.should have_content('Please enter a valid email address')
 end
+
+Then(/^Then I should be able to see 'First Name', 'Last Name', 'Presentation' and 'Curriculum' fields$/) do
+  page.should have_content('First Name')
+  page.should have_content('Last Name')
+  page.should have_content('Presentation')
+  page.should have_content('Curriculum')
+end
